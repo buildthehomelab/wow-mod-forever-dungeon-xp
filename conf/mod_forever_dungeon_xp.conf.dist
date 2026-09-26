@@ -1,0 +1,46 @@
+[worldserver]
+
+########################################
+# mod-forever-dungeon-xp
+#
+# WoW Forever's dungeon XP rework: kills inside dungeons give much less XP, and dungeon quests
+# give much more. Quests only pay out once, so running the same dungeon over and over stops
+# being the fastest way to level.
+########################################
+
+#
+#    ForeverDungeonXP.Enable
+#        Description: Master switch. With 0, dungeon kills and quests give normal XP.
+#        Default:     1
+#
+
+ForeverDungeonXP.Enable = 1
+
+#
+#    ForeverDungeonXP.KillMultiplier
+#        Description: XP from kills inside a dungeon is multiplied by this. 0.25 means a quarter
+#                     of the normal XP. 0 means no XP from dungeon kills at all. It applies after
+#                     the server's kill XP rate, and pets get the same cut.
+#        Default:     0.25
+#
+
+ForeverDungeonXP.KillMultiplier = 0.25
+
+#
+#    ForeverDungeonXP.QuestMultiplier
+#        Description: XP from dungeon quests is multiplied by this, on top of the server's quest
+#                     XP rate. Daily, weekly, monthly, repeatable and Dungeon Finder reward
+#                     quests are not changed.
+#        Default:     3.0
+#
+
+ForeverDungeonXP.QuestMultiplier = 3.0
+
+#
+#    ForeverDungeonXP.IncludeRaids
+#        Description: With 1, raids count as dungeons too: raid kills get KillMultiplier and raid
+#                     quests get QuestMultiplier.
+#        Default:     0
+#
+
+ForeverDungeonXP.IncludeRaids = 0
