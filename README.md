@@ -27,6 +27,13 @@ These quests are never boosted, because they pay out every time:
 
 The quest giver shows the boosted XP when you pick up the quest and when you turn it in.
 
+## Requirements
+
+- [AzerothCore](https://github.com/azerothcore/azerothcore-wotlk) `master` (WotLK 3.3.5a)
+- A WoW 3.3.5a (12340) client
+- No client patch and no database changes
+- Optional: [mod-individual-progression](https://github.com/ZhengPeiRu21/mod-individual-progression) and mod-playerbots work alongside it (see "With other modules")
+
 ## Install
 
 Clone it into your AzerothCore `modules` folder **as `mod-forever-dungeon-xp`**, without the
@@ -66,3 +73,22 @@ restart. To remove the module, delete it and rebuild; it doesn't store anything.
 - Upper Blackrock Spire shares its map with Lower Blackrock Spire, so its kills and its quests
   (sorted under Blackrock Spire) count as dungeon content even with `IncludeRaids` off.
 - Only kill XP inside dungeons is cut. Exploration XP is unchanged.
+
+## Troubleshooting
+
+- **Raid kills or raid quests give normal XP.** Raids only count as dungeons with
+  `ForeverDungeonXP.IncludeRaids = 1`.
+- **A dungeon quest isn't boosted.** Daily, weekly, monthly, repeatable and Dungeon Finder quests
+  never are, and a quest that the game data neither marks as a dungeon quest nor sorts under a
+  dungeon's zone isn't either.
+- **A multiplier change doesn't show.** Run `.reload config` or restart the worldserver.
+
+## Credits
+
+Author: [buildthehomelab](https://github.com/buildthehomelab)
+
+The design follows the WoW Forever private server ruleset. The code is original.
+
+## License
+
+MIT. See [LICENSE](LICENSE).
