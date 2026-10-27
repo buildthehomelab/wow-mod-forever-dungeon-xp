@@ -14,6 +14,9 @@
  * type), or when it's sorted under a dungeon's zone. Daily, weekly, monthly, repeatable and Dungeon
  * Finder reward quests are left alone.
  *
+ * A challenge from mod-challenges can cap the multipliers for its characters (Hardcore: 1x), so
+ * dungeon quests pay them their normal XP.
+ *
  * Released under the MIT License.
  */
 
@@ -23,7 +26,11 @@
 #include "Player.h"
 #include "QuestDef.h"
 #include "ScriptMgr.h"
+#if __has_include("ChallengesApi.h")
+#include "ChallengesApi.h"
+#endif
 
+#include <algorithm>
 #include <cmath>
 
 namespace
@@ -78,6 +85,16 @@ namespace
             && !quest->IsDFQuest();
     }
 
+    // The multiplier held to what the player's challenges allow.
+    float Capped(Player* player, float multiplier)
+    {
+#if __has_include("ChallengesApi.h")
+        if (float const cap = Challenges::XpRateCap(player->GetGUID().GetCounter()))
+            return std::min(multiplier, cap);
+#endif
+        return multiplier;
+    }
+
     uint32 Scale(uint32 xp, float multiplier)
     {
         if (!xp || multiplier <= 0.0f)
@@ -114,7 +131,7 @@ public:
             return;
 
         if (CountsAsDungeon(player->GetMap()->GetEntry()))
-            amount = Scale(amount, config.killMultiplier);
+            amount = Scale(amount, Capped(player, config.killMultiplier));
     }
 
     // Also runs for the quest giver's windows, where player can be null.
@@ -124,7 +141,7 @@ public:
             return;
 
         if (IsOneTimeQuest(quest) && IsDungeonQuest(quest))
-            xpValue = Scale(xpValue, config.questMultiplier);
+            xpValue = Scale(xpValue, Capped(player, config.questMultiplier));
     }
 };
 

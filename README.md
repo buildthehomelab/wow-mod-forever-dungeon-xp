@@ -27,6 +27,10 @@ These quests are never boosted, because they pay out every time:
 
 The quest giver shows the boosted XP when you pick up the quest and when you turn it in.
 
+With [mod-challenges](https://github.com/buildthehomelab/wow-mod-challenges), a challenge can cap both
+multipliers for its characters: a Hardcore character never gets more than 1x, so its dungeon quests
+pay the normal XP. Kills stay cut.
+
 ## Requirements
 
 - [AzerothCore](https://github.com/azerothcore/azerothcore-wotlk) `master` (WotLK 3.3.5a)
