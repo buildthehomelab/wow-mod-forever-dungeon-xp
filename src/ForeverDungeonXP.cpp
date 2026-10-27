@@ -86,7 +86,7 @@ namespace
     }
 
     // The multiplier held to what the player's challenges allow.
-    float Capped(Player* player, float multiplier)
+    float Capped([[maybe_unused]] Player* player, float multiplier)
     {
 #if __has_include("ChallengesApi.h")
         if (float const cap = Challenges::XpRateCap(player->GetGUID().GetCounter()))
